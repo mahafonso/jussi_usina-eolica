@@ -1,0 +1,699 @@
+@charset "UTF-8";
+
+// ===============================================================
+/* @IMPORTS */
+// ===============================================================
+@import '_config';
+
+
+// ===============================================================
+/* GENÉRICOS */
+// ===============================================================
+.cf {
+	&:after {content: " "; clear: both; display: block; font-size: 0; height: 0; visibility: hidden;}
+}
+* html .cf {zoom:1;}
+*:first-child+html .cf {zoom: 1;}
+
+.hide {display: none; visibility: hidden;}
+.show {display: block; visibility: visible;}
+.invisible {
+	background: transparent;
+	border: 0;
+	color: transparent;
+	font-size: 0;
+	height: 0;
+	left: 0;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	text-indent: -99999cm;
+	visibility: hidden;
+	width: 0;
+}
+.superhide {
+	@extend .invisible;
+	display: none;
+}
+
+
+// ===============================================================
+/* BASE */
+// ===============================================================
+html, 
+body {
+	height: 100%;
+	margin: 0;
+	background:#000000;
+	color: $base-font-color;
+	//font: normal normal #{($base-font-size/16px)*1em}/#{$line-height-ratio} $base-font-family;
+
+	//font: normal normal 400 1em/12px "latoregular",Helvetica,Arial,sans-serif;
+
+	font-family:$base-font-family;
+	font-size:16px;
+
+
+	font-smooth: always;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+
+	&>iframe, &>object {
+		display: none;
+	}
+}
+/*
+.main {
+	@extend .cf;
+	margin: 0 auto;
+	width: 960px;
+}*/
+
+
+// ===============================================================
+/* TIPOGRAFIA */
+// ===============================================================
+h1, h2, h3, h4, h5, h6 {
+
+	font: $latoRegular;
+	text-transform: uppercase;
+	text-rendering: optimizeLegibility;
+
+	& small {
+		font-size: 65% !important;
+		line-height: 1;
+	}
+
+	strong{color:$color-gray-dark;font-family:$latoRegular, Arial, Helvetica, sans-serif;font-weight:bold;}
+}
+h1, .h1 {@include font-size($h1-size);}
+h2, .h2 {@include font-size($h2-size);}
+h3, .h3 {@include font-size($h3-size);}
+h4, .h4 {@include font-size($h4-size);}
+h5, .h5 {@include font-size($h5-size);}
+h6, .h6 {@include font-size($h6-size);}
+
+a {
+	color: $base-link-color; 
+	text-decoration: none;
+
+	&:hover, 
+	&:visited {
+		color: lighten($base-link-color, 10%);
+		cursor: pointer;
+		text-decoration: underline;
+	}
+}
+
+p {
+	strong{font:$latoRegular;color:$color-gray-dark;font-weight:bold;
+		&.gray{color: #474747;}
+	}
+	span{font:$latoRegular;font-weight:bold;}
+	a {
+		line-height: inherit;
+
+		&:visited { line-height: inherit; }
+	}
+}
+
+
+// ===============================================================
+/* MAIN */
+// ===============================================================
+.main {
+	div {
+		@extend %wFull;
+	}
+}
+
+.main{
+	position: relative;
+	width: 940px;
+	height: 608px;
+	margin: 0;
+	background: #4e6214;
+
+	&>div {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+
+		&.play {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: $color-green;
+			@include vendor(opacity,0.9);
+			text-align: center;
+			@include singleTransition(500);
+
+			&.hidden {
+				top: 604px;
+			}
+
+			.wrapper {
+				position: relative;
+				top: 50%;
+				transform: translateY(-50%);
+
+				span {
+					display: block;
+					width: 50px;
+					height: 50px;
+					margin: 0 auto;
+					margin-top: 30px;
+					background: url('../img/ico/play.png') center center no-repeat;
+					cursor: pointer;
+
+					&:hover {
+						background: url('../img/ico/play-hover.png') center center no-repeat;
+					}
+				}
+			}
+		}
+
+		&.inside {
+			&>div {
+				width: 100%;
+
+				&#cenario {
+					height: 414px;
+					@include singleTransition(800);
+
+					&.velocidade {
+						background: url('../img/bg/cenario-1.jpg') center center no-repeat;
+					}
+
+					&.direcao {
+						background: url('../img/bg/cenario-2.jpg') center center no-repeat;
+					}
+
+					&.mecanica {
+						background: url('../img/bg/cenario-3.jpg') center center no-repeat;
+					}
+
+					&.transformador {
+						background: url('../img/bg/cenario-4.jpg') center center no-repeat;
+					}
+
+					&.distribuicao {
+						background: url('../img/bg/cenario-5.jpg') center center no-repeat;
+					}
+
+					&.alavanca {
+						background: url('../img/bg/cenario-6.jpg') center center no-repeat;
+					}
+
+					.wrapper {
+						position: relative;
+						width: 100%;
+						height: 100%;
+						padding: 30px;
+						padding-bottom: 0;
+						overflow: hidden;
+
+						h1 {
+							width: 290px;
+							height: 51px;
+							margin: 0;
+							padding: 0;
+							text-indent: -9999px;
+							background: url('../img/titulo.png') center center no-repeat;
+						}
+
+						&>div {
+							&.voce-sabia {
+								position: absolute;
+								bottom: 70px;
+								left: 147px;
+								z-index: 5;
+
+								span {
+									display: block;
+									width: 26px;
+									height: 26px;
+									background: url('../img/ico/interrogacao.png') center center no-repeat;
+								}
+							}
+
+							&.arvore {
+								position: absolute;
+								bottom: 0;
+								left: 0;
+								width: 674px;
+								height: 90px;
+								background: url('../img/arvore.png') no-repeat;
+							}
+
+							&.poste {
+								z-index: 2;
+							}
+
+							&.poste-menor {
+								position: absolute;
+								bottom: 0;
+								left: 620px;
+								width: 18px;
+								height: 181px;
+								background: url('../img/poste-menor.png') no-repeat;
+
+								&[data-menu='transformador'] {
+									&:after {
+										display: block;
+										content: '';
+										width: 18px;
+										height: 181px;
+										background: url('../img/poste-animado-menor.gif') no-repeat;
+									}
+								}
+
+								&.poste-01 {
+									left: 150px;
+								}
+							}
+
+							&.poste-maior {
+								position: absolute;
+								bottom: 0;
+								left: 420px;
+								width: 25px;
+								height: 250px;
+								background: url('../img/poste-maior.png') no-repeat;
+
+								&[data-menu='transformador'] {
+									&:after {
+										display: block;
+										content: '';
+										width: 25px;
+										height: 250px;
+										background: url('../img/poste-animado-maior.gif') no-repeat;
+									}
+								}
+							}
+
+							&.helice {
+								z-index: 3;
+							}
+
+							&.helice-menor {
+								position: absolute;
+								bottom: 100px;
+								left: 548px;
+								width: 161px;
+								height: 161px;
+								background: url('../img/helice-menor.png') no-repeat;
+
+								&.helice-01 {
+									left: 78px;
+								}
+							}
+
+							&.helice-maior {
+								position: absolute;
+								bottom: 140px;
+								left: 324px;
+								width: 219px;
+								height: 219px;
+								background: url('../img/helice-maior.png') no-repeat;
+							}
+
+							&.nuvem {
+								z-index: 1;
+							}
+
+							&.nuvem-01 {
+								position: absolute;
+								top: 135px;
+								left: 230px;
+								width: 60px;
+								height: 30px;
+								background: url('../img/nuvem-1.png') no-repeat;
+							}
+
+							&.nuvem-02 {
+								position: absolute;
+								top: 160px;
+								left: 733px;
+								width: 96px;
+								height: 41px;
+								background: url('../img/nuvem-2.png') no-repeat;
+							}
+
+							&.nuvem-03 {
+								position: absolute;
+								top: 115px;
+								left: -35px;
+								width: 168px;
+								height: 82px;
+								background: url('../img/nuvem-3.png') no-repeat;
+							}
+
+							&.nuvem-04 {
+								position: absolute;
+								top: 25px;
+								left: 845px;
+								width: 150px;
+								height: 63px;
+								background: url('../img/nuvem-4.png') no-repeat;
+							}
+
+							&.wind {
+								display: none;
+								position: absolute;
+								top: 118px;
+								left: 40px;
+								width: 290px;
+								height: 160px;
+								background: url('../img/wind.png') no-repeat;	
+							}
+
+							&.rotor {
+								display: none;
+								position: absolute;
+								top: 35px;
+								left: 308px;
+								width: 255px;
+								height: 255px;
+								background: url('../img/rotor.png') no-repeat;
+								z-index: 6;
+
+								&:before {
+									display: block;
+									content: '';
+									position: absolute;
+									top: 120px;
+									left: 63px;
+									width: 49px;
+									height: 23px;
+									background: url('../img/rotor-animado.gif') no-repeat;
+									z-index: 6;
+								}
+							}
+
+							&.energias {
+								display: none;
+								position: absolute;
+								top: 185px;
+								right: 50px;
+								width: 417px;
+								height: 91px;
+								background: url('../img/energias.png') no-repeat;
+								z-index: 6;
+							}
+
+							&.gerador {
+								position: absolute;
+								bottom: 0;
+								right: 0;
+								width: 104px;
+								height: 61px;
+								background: url('../img/gerador.png') no-repeat;
+								z-index: 6;
+
+								&>div {
+									display: none;
+									position: absolute;
+									top: 28px;
+									width: 6px;
+									height: 21px;
+
+									&.bar1 {
+										left: 36px;
+										background: #ad2424;
+									}
+
+									&.bar2 {
+										left: 44px;
+										background: #ad4724;
+									}
+
+									&.bar3 {
+										left: 52px;
+										background: #ad6b24;
+									}
+
+									&.bar4 {
+										left: 61px;
+										background: #ada524;
+									}
+
+									&.bar5 {
+										left: 70px;
+										background: #88ad24;
+									}
+								}
+							}
+
+							&.info {
+								color: #4d4034;
+								font: $latoLight;
+
+								&>div {
+									display: none;
+									position: absolute;
+									padding: 20px;
+									background: #ffffff;
+									opacity: 0.9;
+									z-index: 5;
+
+									&:before {
+										content: '';
+										display: block;
+										position: absolute;
+										left: -20px;
+										border-top: 20px solid transparent;
+										border-bottom: 20px solid transparent; 
+										border-right:20px solid rgba(255,255,255,0.9);
+									}
+
+									p {
+										margin: 10px 0;
+										padding: 0;
+										font-size: 17px;
+
+										&.title {
+											margin: 0;
+											font-size: 20px;
+											text-transform: uppercase;
+										}
+
+										strong {
+											color: #4d4034;
+											font-weight: 700;
+											font-size: 17px;
+										}
+									}
+
+									&.info-voce-sabia {
+										bottom: 8px;
+										left: 205px;
+										width: 275px;
+										height: 150px;
+
+										&:before {
+											top: 55px;
+										}
+
+										&>span {
+											display: block;
+											font-size: 11px;
+											text-align: right;
+										}
+									}
+
+									&[data-menu="velocidade"] {
+										bottom: 40px;
+										right: 165px;
+										width: 295px;
+										height: 180px;
+
+										&:before {
+											top: 65px;
+										}
+									}
+
+									&[data-menu="direcao"] {
+										bottom: 18px;
+										left: 100px;
+										width: 280px;
+										height: 180px;
+
+										&:before {
+											left: initial;
+											right: -20px;
+											top: 65px;
+											border-right: none;
+											border-left:20px solid rgba(255,255,255,0.9);
+										}
+									}
+
+									&[data-menu="mecanica"] {
+										top: 75px;
+										right: 10px;
+										width: 345px;
+										height: 180px;
+
+										&:before {
+											top: 65px;
+										}
+									}
+
+									&[data-menu="transformador"] {
+										bottom: 130px;
+										right: 15px;
+										width: 270px;
+										height: 180px;
+
+										&:before {
+											bottom: -40px;
+											left: initial;
+											right: 30px;
+											border-right: 20px solid transparent;
+											border-left: 20px solid transparent; 
+											border-top: 20px solid rgba(255,255,255,0.9);
+										}
+									}
+
+									&[data-menu="distribuicao"] {
+										top: 85px;
+										right: 105px;
+										width: 235px;
+										height: 140px;
+
+										&:before {
+											bottom: -40px;
+											left: 100px;
+											border-right: 20px solid transparent;
+											border-left: 20px solid transparent; 
+											border-top: 20px solid rgba(255,255,255,0.9);
+										}
+									}
+
+									&[data-menu="alavanca"] {
+										bottom: 10px;
+										right: 150px;
+										width: 280px;
+										height: 160px;
+
+										&:before {
+											left: initial;
+											right: -20px;
+											top: 65px;
+											border-right: none;
+											border-left:20px solid rgba(255,255,255,0.9);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				&.menu {
+					height: 194px;
+					padding: 35px 0;
+					background: $color-green;
+					z-index: 4;
+
+					ul {
+						margin: 0;
+						padding: 0;
+						text-align: center;
+						list-style-type: none;
+
+						li {
+							display: inline-block;
+							width: 120px;
+							height: 115px;
+							margin: 0 10px;
+							text-align: left;
+							cursor: pointer;
+
+							&:first-child {
+								margin-left: 0;
+							}
+
+							&:last-child {
+								margin-right: 0;
+							}
+
+							&.velocidade {
+								background: url('../img/bg/menu-velocidade.png') center center no-repeat;
+							}
+
+							&.direcao {
+								background: url('../img/bg/menu-direcao.png') center center no-repeat;
+							}
+
+							&.mecanica {
+								background: url('../img/bg/menu-mecanica.png') center center no-repeat;
+							}
+
+							&.transformador {
+								background: url('../img/bg/menu-transformador.png') center center no-repeat;
+							}
+
+							&.distribuicao {
+								background: url('../img/bg/menu-distribuicao.png') center center no-repeat;
+							}
+
+							&.alavanca {
+								background: url('../img/bg/menu-alavanca.png') center center no-repeat;
+							}
+
+							&.active {
+								color: #ffffff;
+
+								&.velocidade {
+									background: url('../img/bg/menu-velocidade-active.png') center center no-repeat;
+								}
+
+								&.direcao {
+									background: url('../img/bg/menu-direcao-active.png') center center no-repeat;
+								}
+
+								&.mecanica {
+									background: url('../img/bg/menu-mecanica-active.png') center center no-repeat;
+								}
+
+								&.transformador {
+									background: url('../img/bg/menu-transformador-active.png') center center no-repeat;
+								}
+
+								&.distribuicao {
+									background: url('../img/bg/menu-distribuicao-active.png') center center no-repeat;
+								}
+
+								&.alavanca {
+									background: url('../img/bg/menu-alavanca-active.png') center center no-repeat;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/* Resposive */
+// @import '_responsive';
+
+
+
+.progress-bar {
+	width: 100%;
+	height: 20px;
+	background: #ffffff;
+	animation: progress 10s linear infinite;
+}
+
+
+@keyframes progress {
+    from {background: #ffffff;}
+    to {background: #000000;}
+}
